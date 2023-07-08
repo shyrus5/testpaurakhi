@@ -8,9 +8,11 @@ class InAppNotification {
     // Initialization setting for android
     var initializationSettingsAndroid =
         const AndroidInitializationSettings('@mipmap/ic_launcher');
-
+ var initializationSettingsIoS =  DarwinInitializationSettings(requestAlertPermission: true,requestBadgePermission: true,requestSoundPermission: true, onDidReceiveLocalNotification: (id, title, body, payload) {
+  
+},);
     var initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
+        InitializationSettings(android: initializationSettingsAndroid,iOS: initializationSettingsIoS);
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) => debugPrint("details"),
